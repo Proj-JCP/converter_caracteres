@@ -1,0 +1,20 @@
+
+# importar biblioteca pandas, biblioteca os
+
+import os
+import pandas as pd
+
+# Diretório onde estão os arquivos, pode ser vários arquivos em csv
+diretorio = 'c:\\Estudos'
+
+# Percorrendo os arquivos no diretório
+for filename in os.listdir(diretorio):
+    if filename.endswith('.csv'):
+        # Lendo o arquivo
+        df = pd.read_csv(os.path.join(diretorio, filename), sep=';')
+
+        # Substituindo ponto e vírgula por vírgula
+        df.replace(';', ',', regex=True, inplace=True)
+
+        # Salvando o arquivo com a substituição
+        df.to_csv(os.path.join(diretorio, filename), index=False)
